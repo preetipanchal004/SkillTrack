@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interview Preparation - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        Skill<span>Track</span>
+    </div>
+
+    <p class="menu-title">MAIN MENU</p>
+
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('profile') }}">My Profile</a>
+    <a href="{{ url_for('skills') }}">My Skills</a>
+    <a href="{{ url_for('courses') }}">Courses</a>
+    <a href="{{ url_for('certifications') }}">Certifications</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+    <a href="{{ url_for('tests') }}">Aptitude Tests</a>
+    <a href="{{ url_for('interview') }}">Interview</a>
+
+    <p class="menu-title">ANALYTICS</p>
+
+    <a href="{{ url_for('readiness') }}">Placement Readiness</a>
+    <a href="{{ url_for('skill_gap') }}">Skill Gap</a>
+    <a href="{{ url_for('recommendations') }}">Recommendations</a>
+    <a href="{{ url_for('progress') }}">My Progress</a>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+</aside>
+
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1>Interview Preparation</h1>
+                <p>Track your interview performance and preparation.</p>
+            </div>
+
+        </div>
+
+
+        <!-- Add Interview Score -->
+
+        <div class="profile-form-box">
+
+            <h2>Add Interview Performance</h2>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+
+                {% if messages %}
+
+                    {% for category, message in messages %}
+
+                        <div class="success-message">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            {% endwith %}
+
+
+            <form method="POST">
+
+                <label>Communication</label>
+
+                <input type="number"
+                       name="communication"
+                       min="0"
+                       max="100"
+                       step="0.01"
+                       placeholder="Score out of 100"
+                       required>
+
+
+                <label>Technical Knowledge</label>
+
+                <input type="number"
+                       name="technical"
+                       min="0"
+                       max="100"
+                       step="0.01"
+                       placeholder="Score out of 100"
+                       required>
+
+
+                <label>Confidence</label>
+
+                <input type="number"
+                       name="confidence"
+                       min="0"
+                       max="100"
+                       step="0.01"
+                       placeholder="Score out of 100"
+                       required>
+
+
+                <label>Problem Solving</label>
+
+                <input type="number"
+                       name="problem_solving"
+                       min="0"
+                       max="100"
+                       step="0.01"
+                       placeholder="Score out of 100"
+                       required>
+
+
+                <label>Interview Date</label>
+
+                <input type="date"
+                       name="interview_date">
+
+
+                <button type="submit" class="dashboard-btn">
+                    Add Interview Score
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- Saved Interview Results -->
+
+        <div class="profile-form-box">
+
+            <h2>My Interview Performance</h2>
+
+            {% if interview_scores %}
+
+            <table class="skills-table">
+
+                <thead>
+                    <tr>
+                        <th>Communication</th>
+                        <th>Technical</th>
+                        <th>Confidence</th>
+                        <th>Problem Solving</th>
+                        <th>Overall Score</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for interview in interview_scores %}
+
+                    <tr>
+
+                        <td>{{ interview.communication }}%</td>
+
+                        <td>{{ interview.technical }}%</td>
+
+                        <td>{{ interview.confidence }}%</td>
+
+                        <td>{{ interview.problem_solving }}%</td>
+
+                        <td>
+                            {{
+                                (
+                                    interview.communication +
+                                    interview.technical +
+                                    interview.confidence +
+                                    interview.problem_solving
+                                ) / 4
+                            }}%
+                        </td>
+
+                        <td>{{ interview.interview_date or '-' }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+                <p>No interview performance added yet.</p>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

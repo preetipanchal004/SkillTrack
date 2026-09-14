@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Skill Gap Analysis - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        Skill<span>Track</span>
+    </div>
+
+    <p class="menu-title">MAIN MENU</p>
+
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('profile') }}">My Profile</a>
+    <a href="{{ url_for('skills') }}">My Skills</a>
+    <a href="{{ url_for('courses') }}">Courses</a>
+    <a href="{{ url_for('certifications') }}">Certifications</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+    <a href="{{ url_for('tests') }}">Aptitude Tests</a>
+    <a href="{{ url_for('interview') }}">Interview</a>
+
+    <p class="menu-title">ANALYTICS</p>
+
+    <a href="{{ url_for('readiness') }}">Placement Readiness</a>
+    <a href="{{ url_for('skill_gap') }}">Skill Gap</a>
+    <a href="{{ url_for('recommendations') }}">Recommendations</a>
+    <a href="{{ url_for('progress') }}">My Progress</a>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+</aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-content">
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <h1>Skill Gap Analysis</h1>
+
+                <p class="student-welcome">
+                    Compare your current skills with the requirements
+                    of your target job role.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- TARGET ROLE -->
+
+        <div class="skill-gap-header">
+
+            <div>
+                <h2>Target Role</h2>
+
+                <p>
+                    {{ target_role }}
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- SKILL GAP TABLE -->
+
+        <div class="dashboard-section">
+
+            <h2>Skill Comparison</h2>
+
+            <div class="profile-form-box">
+
+                {% if skill_gaps %}
+
+                <table class="skills-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Skill</th>
+                            <th>Required Level</th>
+                            <th>Your Level</th>
+                            <th>Skill Gap</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for skill in skill_gaps %}
+
+                        <tr>
+
+                            <td>
+                                {{ skill.skill_name }}
+                            </td>
+
+                            <td>
+                                {{ skill.required_level }}%
+                            </td>
+
+                            <td>
+                                {{ skill.current_level }}%
+                            </td>
+
+                            <td>
+                                {{ skill.gap }}%
+                            </td>
+
+                            <td>
+
+                                {% if skill.gap == 0 %}
+
+                                    <span class="skill-status ready">
+                                        Ready
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="skill-status improve">
+                                        Improve
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+                {% else %}
+
+                    <p>
+                        No skill gap data available yet.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="dashboard-section">
+
+            <h2>Skill Gap Summary</h2>
+
+            <div class="readiness-grid">
+
+                <div class="readiness-card">
+
+                    <div class="readiness-card-header">
+
+                        <h3>Total Required Skills</h3>
+
+                        <span>
+                            {{ total_skills }}
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Skills required for your target role.
+                    </p>
+
+                </div>
+
+
+                <div class="readiness-card">
+
+                    <div class="readiness-card-header">
+
+                        <h3>Skills to Improve</h3>
+
+                        <span>
+                            {{ skills_to_improve }}
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Skills where your current level is below
+                        the required level.
+                    </p>
+
+                </div>
+
+
+                <div class="readiness-card">
+
+                    <div class="readiness-card-header">
+
+                        <h3>Skills Ready</h3>
+
+                        <span>
+                            {{ skills_ready }}
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Skills where you have reached the required level.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Skills - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        Skill<span>Track</span>
+    </div>
+
+    <p class="menu-title">MAIN MENU</p>
+
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('profile') }}">My Profile</a>
+    <a href="{{ url_for('skills') }}">My Skills</a>
+    <a href="{{ url_for('courses') }}">Courses</a>
+    <a href="{{ url_for('certifications') }}">Certifications</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+    <a href="{{ url_for('tests') }}">Aptitude Tests</a>
+    <a href="{{ url_for('interview') }}">Interview</a>
+
+    <p class="menu-title">ANALYTICS</p>
+
+    <a href="{{ url_for('readiness') }}">Placement Readiness</a>
+    <a href="{{ url_for('skill_gap') }}">Skill Gap</a>
+    <a href="{{ url_for('recommendations') }}">Recommendations</a>
+    <a href="{{ url_for('progress') }}">My Progress</a>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+</aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1>My Skills</h1>
+                <p>Add and manage your technical and soft skills.</p>
+            </div>
+
+        </div>
+
+
+        <div class="profile-form-box">
+
+            <h2>Add Your Skill</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="success-message">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+            <form method="POST">
+
+                <label>Select Skill</label>
+
+                <select name="skill_id" required>
+
+                    <option value="">Select a skill</option>
+
+                    <option value="1">Python</option>
+                    <option value="2">SQL</option>
+                    <option value="3">Microsoft Excel</option>
+                    <option value="4">Power BI</option>
+                    <option value="5">HTML</option>
+                    <option value="6">CSS</option>
+                    <option value="7">JavaScript</option>
+                    <option value="8">Communication</option>
+                    <option value="9">Problem Solving</option>
+                    <option value="10">Teamwork</option>
+
+                </select>
+
+
+                <label>Skill Level (0 - 100)</label>
+
+                <input type="number"
+                       name="skill_level"
+                       min="0"
+                       max="100"
+                       placeholder="Example: 75"
+                       required>
+
+
+                <button type="submit" class="dashboard-btn">
+                    Add Skill
+                </button>
+
+            </form>
+
+        </div>
+<div class="profile-form-box">
+
+    <h2>My Added Skills</h2>
+
+    {% if student_skills %}
+
+    <table class="skills-table">
+
+        <thead>
+            <tr>
+                <th>Skill</th>
+                <th>Category</th>
+                <th>Skill Level</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for skill in student_skills %}
+
+            <tr>
+                <td>{{ skill.skill_name }}</td>
+                <td>{{ skill.category }}</td>
+                <td>{{ skill.skill_level }}%</td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <p>No skills added yet.</p>
+
+    {% endif %}
+
+</div>
+    </main>
+
+</div>
+
+</body>
+</html>

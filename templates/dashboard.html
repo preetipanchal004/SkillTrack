@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            Skill<span>Track</span>
+        </div>
+
+        <p class="menu-title">MAIN MENU</p>
+
+        <a href="{{ url_for('dashboard') }}" class="active">Dashboard</a>
+        <a href="{{ url_for('profile') }}">My Profile</a>
+        <a href="{{ url_for('skills') }}">My Skills</a>
+        <a href="{{ url_for('courses') }}">Courses</a>
+        <a href="{{ url_for('certifications')}}">Certifications</a>
+        <a href="{{ url_for('projects')}}">Projects</a>
+        <a href="{{ url_for('tests') }}">Aptitude Tests</a>
+        <a href="{{ url_for('interview') }}">Interview</a>
+
+        <p class="menu-title">ANALYTICS</p>
+
+        <a href="{{ url_for('readiness') }}">Placement Readiness</a>
+        <a href="{{ url_for('skill_gap') }}">Skill Gap</a>
+        <a href="{{ url_for('recommendations') }}">Recommendations</a>
+        <a href="{{ url_for('progress') }}">My Progress</a>
+
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1>Student Dashboard</h1>
+                <p>Track your skills and placement preparation.</p>
+            </div>
+
+            <div class="student-welcome">
+                Welcome, Student 👋
+            </div>
+
+        </div>
+
+
+        <!-- KPI Cards -->
+        <div class="dashboard-cards">
+
+            <div class="dashboard-card">
+                <h3>Placement Readiness</h3>
+                <h2>{{ readiness_score }}%</h2>
+                <p>Overall readiness score</p>
+            </div>
+
+            <div class="dashboard-card">
+    <h3>My Skills</h3>
+    <h2>{{ skill_count }}</h2>
+    <p>Skills added</p>
+</div>
+
+<div class="dashboard-card">
+    <h3>Projects</h3>
+    <h2>{{ project_count }}</h2>
+    <p>Projects completed</p>
+</div>
+
+<div class="dashboard-card">
+    <h3>Certifications</h3>
+    <h2>{{ certification_count }}</h2>
+    <p>Certifications earned</p>
+</div>
+<div class="dashboard-card">
+    <h3>Aptitude Score</h3>
+    <h2>{{ aptitude_score }}%</h2>
+    <p>Average test performance</p>
+</div>
+
+<div class="dashboard-card">
+    <h3>Interview Score</h3>
+    <h2>{{ interview_score }}%</h2>
+    <p>Average interview performance</p>
+</div>
+        </div>
+
+
+        <!-- Analytics Section -->
+
+<div class="dashboard-top-grid">
+
+    <!-- Placement Preparation -->
+
+    <div class="section-box">
+
+        <h2>Placement Preparation</h2>
+
+        <p>
+            Complete your profile, add skills, projects,
+            certifications and test scores to improve your
+            placement readiness.
+        </p>
+
+        <a href="{{ url_for('profile') }}" class="dashboard-btn">
+            Complete Profile
+        </a>
+
+    </div>
+
+
+    <!-- Skill Performance -->
+
+    <div class="section-box skill-performance-section">
+
+        <h2>Skill Performance</h2>
+
+        <div class="chart-box skill-chart-box">
+
+            <canvas id="skillChart"></canvas>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Skill Gap Analysis -->
+
+<div class="dashboard-section">
+
+    <div class="section-box">
+
+        <h2>Skill Gap Analysis</h2>
+
+        <p>
+            Select your target role to compare your current
+            skills with the required industry skills.
+        </p>
+
+        <a href="{{ url_for('skill_gap') }}" class="dashboard-btn">
+            View Skill Gap
+        </a>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    const skillNames = {{ skill_names | tojson }};
+    const skillLevels = {{ skill_levels | tojson }};
+
+    const ctx = document.getElementById('skillChart');
+
+    new Chart(ctx, {
+
+        type: 'bar',
+
+        data: {
+
+            labels: skillNames,
+
+            datasets: [{
+                label: 'Skill Level (%)',
+                data: skillLevels,
+                borderWidth: 1,
+                borderRadius: 6
+            }]
+
+        },
+
+        options: {
+
+            indexAxis: 'y',
+
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                legend: {
+                    display: true
+                }
+
+            },
+
+            scales: {
+
+                x: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        stepSize: 20
+                    }
+                },
+
+                y: {
+
+                    ticks: {
+                        autoSkip: false,
+                        font: {
+                            size: 13
+                        }
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    const skillNames = {{ skill_names | tojson }};
+    const skillLevels = {{ skill_levels | tojson }};
+
+    const ctx = document.getElementById('skillChart');
+
+    new Chart(ctx, {
+
+        type: 'bar',
+
+        data: {
+
+            labels: skillNames,
+
+            datasets: [{
+                label: 'Skill Level (%)',
+                data: skillLevels,
+                borderWidth: 1,
+                borderRadius: 6
+            }]
+
+        },
+
+        options: {
+
+            indexAxis: 'y',
+
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                legend: {
+                    display: true
+                }
+
+            },
+
+            scales: {
+
+                x: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        stepSize: 20
+                    }
+                },
+
+                y: {
+
+                    ticks: {
+                        autoSkip: false,
+                        font: {
+                            size: 13
+                        }
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+</script>
+            
+        <!-- Recent Activity -->
+
+<div class="dashboard-section">
+
+    <h2>Recent Activity</h2>
+
+    <div class="activity-box">
+
+        <div class="activity-item">
+            <div class="activity-icon">✓</div>
+            <div>
+                <h3>Skills Updated</h3>
+                <p>Keep improving your technical skills.</p>
+            </div>
+        </div>
+
+        <div class="activity-item">
+            <div class="activity-icon">✓</div>
+            <div>
+                <h3>Projects Added</h3>
+                <p>Projects strengthen your placement profile.</p>
+            </div>
+        </div>
+
+        <div class="activity-item">
+            <div class="activity-icon">✓</div>
+            <div>
+                <h3>Aptitude Practice</h3>
+                <p>Regular practice can improve your test performance.</p>
+            </div>
+        </div>
+
+        <div class="activity-item">
+            <div class="activity-icon">✓</div>
+            <div>
+                <h3>Interview Preparation</h3>
+                <p>Continue improving communication and confidence.</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- Preparation Performance -->
+
+<div class="dashboard-section">
+
+    <h2>Placement Preparation Performance</h2>
+
+    <div class="performance-grid">
+
+        <div class="performance-card">
+            <h3>Aptitude Performance</h3>
+
+            <div class="performance-score">
+                {{ aptitude_score }}%
+            </div>
+
+            <p>
+                Average aptitude test score
+            </p>
+        </div>
+
+
+        <div class="performance-card">
+            <h3>Interview Performance</h3>
+
+            <div class="performance-score">
+                {{ interview_score }}%
+            </div>
+
+            <p>
+                Average interview evaluation score
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+        <!-- Recommendation -->
+        <div class="recommendation-box">
+
+            <h2>💡 Recommended for You</h2>
+
+            <p>
+                Add your skills and target role to receive
+                personalized improvement recommendations.
+            </p>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

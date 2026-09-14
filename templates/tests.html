@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aptitude Tests - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        Skill<span>Track</span>
+    </div>
+
+    <p class="menu-title">MAIN MENU</p>
+
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('profile') }}">My Profile</a>
+    <a href="{{ url_for('skills') }}">My Skills</a>
+    <a href="{{ url_for('courses') }}">Courses</a>
+    <a href="{{ url_for('certifications') }}">Certifications</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+    <a href="{{ url_for('tests') }}">Aptitude Tests</a>
+    <a href="{{ url_for('interview') }}">Interview</a>
+
+    <p class="menu-title">ANALYTICS</p>
+
+    <a href="{{ url_for('readiness') }}">Placement Readiness</a>
+    <a href="{{ url_for('skill_gap') }}">Skill Gap</a>
+    <a href="{{ url_for('recommendations') }}">Recommendations</a>
+    <a href="{{ url_for('progress') }}">My Progress</a>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+</aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1>Aptitude & Mock Tests</h1>
+                <p>Track your aptitude and technical test performance.</p>
+            </div>
+
+        </div>
+
+
+        <!-- Add Test -->
+
+        <div class="profile-form-box">
+
+            <h2>Add Test Result</h2>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+
+                {% if messages %}
+
+                    {% for category, message in messages %}
+
+                        <div class="success-message">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            {% endwith %}
+
+
+            <form method="POST">
+
+                <label>Test Name</label>
+
+                <input type="text"
+                       name="test_name"
+                       placeholder="Example: TCS Aptitude Test"
+                       required>
+
+
+                <label>Category</label>
+
+                <select name="category" required>
+
+                    <option value="Quantitative">
+                        Quantitative
+                    </option>
+
+                    <option value="Logical">
+                        Logical
+                    </option>
+
+                    <option value="Technical">
+                        Technical
+                    </option>
+
+                </select>
+
+
+                <label>Score</label>
+
+                <input type="number"
+                       name="score"
+                       min="0"
+                       max="100"
+                       step="0.01"
+                       placeholder="Enter score out of 100"
+                       required>
+
+
+                <label>Test Date</label>
+
+                <input type="date"
+                       name="test_date">
+
+
+                <button type="submit" class="dashboard-btn">
+                    Add Test Result
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- Saved Test Results -->
+
+        <div class="profile-form-box">
+
+            <h2>My Test Results</h2>
+
+            {% if student_tests %}
+
+            <table class="skills-table">
+
+                <thead>
+                    <tr>
+                        <th>Test Name</th>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Test Date</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for test in student_tests %}
+
+                    <tr>
+
+                        <td>{{ test.test_name }}</td>
+
+                        <td>{{ test.category }}</td>
+
+                        <td>{{ test.score }}%</td>
+
+                        <td>{{ test.test_date or '-' }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+                <p>No test results added yet.</p>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

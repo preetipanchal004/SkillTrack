@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        Skill<span>Track</span>
+    </div>
+
+    <p class="menu-title">MAIN MENU</p>
+
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('profile') }}">My Profile</a>
+    <a href="{{ url_for('skills') }}">My Skills</a>
+    <a href="{{ url_for('courses') }}">Courses</a>
+    <a href="{{ url_for('certifications') }}">Certifications</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+    <a href="{{ url_for('tests') }}">Aptitude Tests</a>
+    <a href="{{ url_for('interview') }}">Interview</a>
+
+    <p class="menu-title">ANALYTICS</p>
+
+    <a href="{{ url_for('readiness') }}">Placement Readiness</a>
+    <a href="{{ url_for('skill_gap') }}">Skill Gap</a>
+    <a href="{{ url_for('recommendations') }}">Recommendations</a>
+    <a href="{{ url_for('progress') }}">My Progress</a>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+</aside>
+
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1>My Profile</h1>
+                <p>Manage your academic and career information.</p>
+            </div>
+
+        </div>
+
+
+        <div class="profile-form-box">
+
+            <h2>Student Information</h2>
+
+            <form method="POST">
+
+                <label>College Name</label>
+                <input type="text"
+                       name="college"
+                       placeholder="Enter your college name"
+                       value="{{ profile_data.college if profile_data else '' }}"
+                       required>
+
+
+                <label>Course</label>
+                <input type="text"
+                       name="course"
+                       placeholder="Example: MCA"
+                       value="{{ profile_data.course if profile_data else '' }}"
+                       required>
+
+
+                <label>Semester</label>
+                <input type="number"
+                       name="semester"
+                       min="1"
+                       max="6"
+                       placeholder="Enter semester"
+                       value="{{ profile_data.semester if profile_data else '' }}"
+                       required>
+
+
+                <label>Target Job Role</label>
+
+                <select name="target_role" required>
+
+                    <option value="">Select your target role</option>
+
+<option value="Data Analyst"
+    {% if profile_data and profile_data.target_role == "Data Analyst" %}selected{% endif %}>
+    Data Analyst
+</option>
+
+<option value="Web Developer"
+    {% if profile_data and profile_data.target_role == "Web Developer" %}selected{% endif %}>
+    Web Developer
+</option>
+
+<option value="Python Developer"
+    {% if profile_data and profile_data.target_role == "Python Developer" %}selected{% endif %}>
+    Python Developer
+</option>
+
+<option value="Business Analyst"
+    {% if profile_data and profile_data.target_role == "Business Analyst" %}selected{% endif %}>
+    Business Analyst
+</option>
+
+                </select>
+
+
+                <label>Career Objective</label>
+
+                <textarea name="career_objective"
+                          rows="5"
+                          placeholder="Write your career objective">{{ profile_data.career_objective if profile_data else '' }}</textarea>
+
+
+                <label>Phone Number</label>
+
+                <input type="text"
+                       name="phone"
+                       placeholder="Enter phone number"
+                       value="{{ profile_data.phone if profile_data else '' }}">
+
+
+                <button type="submit" class="dashboard-btn">
+                    Save / Update Profile
+                </button>
+
+            </form>
+
+        </div>
+        {% if profile_data %}
+
+        <div class="profile-form-box">
+
+            <h2>Profile Details</h2>
+
+            <table class="profile-table">
+
+                <tr>
+                    <th>College Name</th>
+                    <td>{{ profile_data.college }}</td>
+                </tr>
+
+                <tr>
+                    <th>Course</th>
+                    <td>{{ profile_data.course }}</td>
+                </tr>
+
+                <tr>
+                    <th>Semester</th>
+                    <td>{{ profile_data.semester }}</td>
+                </tr>
+
+                <tr>
+                    <th>Target Job Role</th>
+                    <td>{{ profile_data.target_role }}</td>
+                </tr>
+
+                <tr>
+                    <th>Career Objective</th>
+                    <td>{{ profile_data.career_objective }}</td>
+                </tr>
+
+                <tr>
+                    <th>Phone Number</th>
+                    <td>{{ profile_data.phone }}</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        {% endif %}
+    </main>
+
+</div>
+
+</body>
+</html>

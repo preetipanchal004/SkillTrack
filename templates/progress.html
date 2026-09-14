@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Progress - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        Skill<span>Track</span>
+    </div>
+
+    <p class="menu-title">MAIN MENU</p>
+
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('profile') }}">My Profile</a>
+    <a href="{{ url_for('skills') }}">My Skills</a>
+    <a href="{{ url_for('courses') }}">Courses</a>
+    <a href="{{ url_for('certifications') }}">Certifications</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+    <a href="{{ url_for('tests') }}">Aptitude Tests</a>
+    <a href="{{ url_for('interview') }}">Interview</a>
+
+    <p class="menu-title">ANALYTICS</p>
+
+    <a href="{{ url_for('readiness') }}">Placement Readiness</a>
+    <a href="{{ url_for('skill_gap') }}">Skill Gap</a>
+    <a href="{{ url_for('recommendations') }}">Recommendations</a>
+    <a href="{{ url_for('progress') }}">My Progress</a>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+</aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-content">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1>My Progress</h1>
+
+                <p class="student-welcome">
+                    Track your overall learning and placement preparation progress.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- PROGRESS OVERVIEW -->
+
+        <div class="dashboard-section">
+
+            <h2>Progress Overview</h2>
+
+            <div class="progress-overview-grid">
+
+                <div class="progress-stat-card">
+
+                    <h3>Placement Readiness</h3>
+
+                    <div class="progress-stat-value">
+                        {{ readiness_score }}%
+                    </div>
+
+                    <p>
+                        Overall placement preparation
+                    </p>
+
+                </div>
+
+
+                <div class="progress-stat-card">
+
+                    <h3>Skills</h3>
+
+                    <div class="progress-stat-value">
+                        {{ skill_count }}
+                    </div>
+
+                    <p>
+                        Skills added
+                    </p>
+
+                </div>
+
+
+                <div class="progress-stat-card">
+
+                    <h3>Projects</h3>
+
+                    <div class="progress-stat-value">
+                        {{ project_count }}
+                    </div>
+
+                    <p>
+                        Projects completed
+                    </p>
+
+                </div>
+
+
+                <div class="progress-stat-card">
+
+                    <h3>Certifications</h3>
+
+                    <div class="progress-stat-value">
+                        {{ certification_count }}
+                    </div>
+
+                    <p>
+                        Certifications earned
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PREPARATION PROGRESS -->
+
+        <div class="dashboard-section">
+
+            <h2>Placement Preparation Progress</h2>
+
+            <div class="progress-list">
+
+                <div class="progress-item">
+
+                    <div class="progress-item-header">
+
+                        <span>Skills Development</span>
+
+                        <strong>
+                            {{ skill_score }}%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"
+                             style="width: {{ skill_score }}%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-item">
+
+                    <div class="progress-item-header">
+
+                        <span>Project Development</span>
+
+                        <strong>
+                            {{ project_score }}%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"
+                             style="width: {{ project_score }}%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-item">
+
+                    <div class="progress-item-header">
+
+                        <span>Certifications</span>
+
+                        <strong>
+                            {{ certification_score }}%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"
+                             style="width: {{ certification_score }}%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-item">
+
+                    <div class="progress-item-header">
+
+                        <span>Aptitude Preparation</span>
+
+                        <strong>
+                            {{ aptitude_score }}%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"
+                             style="width: {{ aptitude_score }}%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-item">
+
+                    <div class="progress-item-header">
+
+                        <span>Interview Preparation</span>
+
+                        <strong>
+                            {{ interview_score }}%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"
+                             style="width: {{ interview_score }}%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROGRESS MESSAGE -->
+
+        <div class="dashboard-section">
+
+            <h2>Progress Summary</h2>
+
+            <div class="section-box">
+
+                <p>
+                    Your current placement readiness is
+                    <strong>{{ readiness_score }}%</strong>.
+                </p>
+
+                <p>
+                    Continue improving your technical skills,
+                    projects, aptitude performance and interview
+                    preparation to become placement ready.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

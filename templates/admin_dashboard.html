@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+            <h2>SkillTrack</h2>
+            <p>Admin Panel</p>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="{{ url_for('admin_dashboard') }}" class="active">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="dashboard-content admin-dashboard-content">
+        
+        <div class="dashboard-header">
+
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p>Welcome, {{ admin.name }}</p>
+            </div>
+
+        </div>
+
+
+        <!-- Statistics Cards -->
+        <div class="admin-stats-grid">
+            <div class="admin-stat-card">
+                <h3>Total Students</h3>
+                <div class="admin-stat-number">
+                    {{ total_students }}
+                </div>
+            </div>
+
+
+            <div class="admin-stat-card">
+                <h3>Skill Records</h3>
+                <div class="admin-stat-number">
+                    {{ total_skills }}
+                </div>
+            </div>
+
+
+            <div class="admin-stat-card">
+                <h3>Total Projects</h3>
+                <div class="admin-stat-number">
+                    {{ total_projects }}
+                </div>
+            </div>
+
+
+            <div class="admin-stat-card">
+                <h3>Certifications</h3>
+                <div class="admin-stat-number">
+                    {{ total_certifications }}
+                </div>
+            </div>
+
+        </div>
+<!-- Placement Readiness Overview -->
+
+<div class="admin-students-box">
+
+    <h2>Placement Readiness Overview</h2>
+
+    <div class="admin-stats-grid">
+
+        <div class="admin-stat-card">
+            <h3>Placement Ready</h3>
+            <div class="admin-stat-number">
+                {{ readiness.excellent }}
+            </div>
+        </div>
+
+        <div class="admin-stat-card">
+            <h3>Almost Ready</h3>
+            <div class="admin-stat-number">
+                {{ readiness.good }}
+            </div>
+        </div>
+
+        <div class="admin-stat-card">
+            <h3>Needs Improvement</h3>
+            <div class="admin-stat-number">
+                {{ readiness.needs_improvement }}
+            </div>
+        </div>
+
+        <div class="admin-stat-card">
+            <h3>Beginner</h3>
+            <div class="admin-stat-number">
+                {{ readiness.beginner }}
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+        <!-- Students Section -->
+        <div class="admin-students-box">
+            <h2>Registered Students</h2>
+
+            {% if students %}
+
+            <div class="table-container">
+
+                <table class="admin-students-table">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Email</th>
+                            <th>Course</th>
+                            <th>Semester</th>
+                            <th>Target Role</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for student in students %}
+
+                        <tr>
+
+                            <td>{{ student.name }}</td>
+
+                            <td>{{ student.email }}</td>
+
+                            <td>
+                                {{ student.course if student.course else "Not Updated" }}
+                            </td>
+
+                            <td>
+                                {{ student.semester if student.semester else "Not Updated" }}
+                            </td>
+
+                            <td>
+                                {{ student.target_role if student.target_role else "Not Updated" }}
+                            </td>
+                            <td>
+                                <a href="{{ url_for('admin_student_details', student_id=student.user_id) }}"
+                                   class="admin-view-btn">
+                                    View
+                                </a>
+                            </td>
+                    </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            {% else %}
+
+            <p class="empty-message">
+                No students registered yet.
+            </p>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

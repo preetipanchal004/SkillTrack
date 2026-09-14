@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillTrack | Student Skill & Placement Analytics</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">SkillTrack</div>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('features') }}">Features</a>
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}" class="register-btn">Get Started</a>
+        </nav>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="tagline">STUDENT SKILL DEVELOPMENT PLATFORM</p>
+
+            <h1>
+                Track Your Skills.<br>
+                Improve Your Performance.<br>
+                Get Placement Ready.
+            </h1>
+
+            <p class="hero-text">
+                SkillTrack helps students manage their skills, courses,
+                certifications, projects and placement preparation —
+                while providing analytics to identify skill gaps and
+                improve placement readiness.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="{{ url_for('register') }}" class="primary-btn">Get Started</a>
+                <a href="{{ url_for('features') }}" class="secondary-btn">Explore Features</a>
+            </div>
+            
+
+        </div>
+
+
+        <!-- Right Side Analytics Card -->
+        <div class="analytics-card">
+
+            <div class="card-header">
+                <span>Placement Readiness</span>
+                <span>2026</span>
+            </div>
+
+            <div class="score">
+                78%
+            </div>
+
+            <p class="ready-text">Good Progress</p>
+
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+
+            <div class="stats">
+
+                <div>
+                    <strong>08</strong>
+                    <span>Skills</span>
+                </div>
+
+                <div>
+                    <strong>04</strong>
+                    <span>Projects</span>
+                </div>
+
+                <div>
+                    <strong>06</strong>
+                    <span>Courses</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Features Section -->
+    <section class="features">
+
+        <div class="section-heading">
+            <p>WHY SKILLTRACK?</p>
+            <h2>Everything You Need to Become Placement Ready</h2>
+        </div>
+
+        <div class="feature-container">
+
+            <div class="feature-card">
+                <div class="icon">📊</div>
+                <h3>Placement Analytics</h3>
+                <p>
+                    Analyze your overall placement readiness
+                    using performance data.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">🎯</div>
+                <h3>Skill Gap Analysis</h3>
+                <p>
+                    Compare your current skills with the
+                    requirements of your target role.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">🚀</div>
+                <h3>Smart Recommendations</h3>
+                <p>
+                    Get personalized suggestions to improve
+                    your weak areas.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 SkillTrack | Student Skill Development & Placement Analytics</p>
+    </footer>
+
+</body>
+</html>
+
+

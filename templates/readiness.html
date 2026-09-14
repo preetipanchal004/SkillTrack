@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Readiness - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        Skill<span>Track</span>
+    </div>
+
+    <p class="menu-title">MAIN MENU</p>
+
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('profile') }}">My Profile</a>
+    <a href="{{ url_for('skills') }}">My Skills</a>
+    <a href="{{ url_for('courses') }}">Courses</a>
+    <a href="{{ url_for('certifications') }}">Certifications</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+    <a href="{{ url_for('tests') }}">Aptitude Tests</a>
+    <a href="{{ url_for('interview') }}">Interview</a>
+
+    <p class="menu-title">ANALYTICS</p>
+
+    <a href="{{ url_for('readiness') }}">Placement Readiness</a>
+    <a href="{{ url_for('skill_gap') }}">Skill Gap</a>
+    <a href="{{ url_for('recommendations') }}">Recommendations</a>
+    <a href="{{ url_for('progress') }}">My Progress</a>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+</aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-content">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1>Placement Readiness</h1>
+
+                <p class="student-welcome">
+                    Analyze your overall preparation for placement.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- OVERALL SCORE -->
+
+        <div class="readiness-main-card">
+
+            <div class="readiness-score">
+
+                <h2>Overall Placement Readiness</h2>
+
+                <div class="score-circle">
+                    <span>{{ readiness_score }}%</span>
+                </div>
+
+                <h3>{{ readiness_status }}</h3>
+
+                <p>
+                    Your readiness score is calculated using your
+                    skills, projects, certifications, aptitude performance
+                    and interview performance.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SCORE BREAKDOWN -->
+
+        <div class="dashboard-section">
+
+            <h2>Readiness Score Breakdown</h2>
+
+            <div class="readiness-grid">
+
+
+                <!-- SKILLS -->
+
+                <div class="readiness-card">
+
+                    <div class="readiness-card-header">
+                        <h3>Skills</h3>
+                        <span>35%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                             style="width: {{ skill_score }}%;">
+                        </div>
+                    </div>
+
+                    <p>
+                        Current Skill Score:
+                        <strong>{{ skill_score }}%</strong>
+                    </p>
+
+                </div>
+
+
+                <!-- PROJECTS -->
+
+                <div class="readiness-card">
+
+                    <div class="readiness-card-header">
+                        <h3>Projects</h3>
+                        <span>20%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                             style="width: {{ project_score }}%;">
+                        </div>
+                    </div>
+
+                    <p>
+                        Project Score:
+                        <strong>{{ project_score }}%</strong>
+                    </p>
+
+                </div>
+
+
+                <!-- CERTIFICATIONS -->
+
+                <div class="readiness-card">
+
+                    <div class="readiness-card-header">
+                        <h3>Certifications</h3>
+                        <span>10%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                             style="width: {{ certification_score }}%;">
+                        </div>
+                    </div>
+
+                    <p>
+                        Certification Score:
+                        <strong>{{ certification_score }}%</strong>
+                    </p>
+
+                </div>
+
+
+                <!-- APTITUDE -->
+
+                <div class="readiness-card">
+
+                    <div class="readiness-card-header">
+                        <h3>Aptitude</h3>
+                        <span>20%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                             style="width: {{ aptitude_score }}%;">
+                        </div>
+                    </div>
+
+                    <p>
+                        Aptitude Score:
+                        <strong>{{ aptitude_score }}%</strong>
+                    </p>
+
+                </div>
+
+
+                <!-- INTERVIEW -->
+
+                <div class="readiness-card">
+
+                    <div class="readiness-card-header">
+                        <h3>Interview</h3>
+                        <span>15%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                             style="width: {{ interview_score }}%;">
+                        </div>
+                    </div>
+
+                    <p>
+                        Interview Score:
+                        <strong>{{ interview_score }}%</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HOW SCORE IS CALCULATED -->
+
+        <div class="dashboard-section">
+
+            <h2>How Your Score Is Calculated</h2>
+
+            <div class="section-box">
+
+                <p>
+                    <strong>Skills:</strong> 35%
+                </p>
+
+                <p>
+                    <strong>Projects:</strong> 20%
+                </p>
+
+                <p>
+                    <strong>Certifications:</strong> 10%
+                </p>
+
+                <p>
+                    <strong>Aptitude Performance:</strong> 20%
+                </p>
+
+                <p>
+                    <strong>Interview Performance:</strong> 15%
+                </p>
+
+                <hr>
+
+                <p>
+                    These factors are combined to generate your
+                    overall Placement Readiness Score.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </main>

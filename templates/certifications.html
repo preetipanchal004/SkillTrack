@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Certifications - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        Skill<span>Track</span>
+    </div>
+
+    <p class="menu-title">MAIN MENU</p>
+
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('profile') }}">My Profile</a>
+    <a href="{{ url_for('skills') }}">My Skills</a>
+    <a href="{{ url_for('courses') }}">Courses</a>
+    <a href="{{ url_for('certifications') }}">Certifications</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+    <a href="{{ url_for('tests') }}">Aptitude Tests</a>
+    <a href="{{ url_for('interview') }}">Interview</a>
+
+    <p class="menu-title">ANALYTICS</p>
+
+    <a href="{{ url_for('readiness') }}">Placement Readiness</a>
+    <a href="{{ url_for('skill_gap') }}">Skill Gap</a>
+    <a href="{{ url_for('recommendations') }}">Recommendations</a>
+    <a href="{{ url_for('progress') }}">My Progress</a>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+</aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1>My Certifications</h1>
+                <p>Manage your professional certifications and credentials.</p>
+            </div>
+
+        </div>
+
+
+        <div class="profile-form-box">
+
+            <h2>Add Certification</h2>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% if messages %}
+
+        {% for category, message in messages %}
+
+            <div class="success-message">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+{% endwith %}
+
+            <form method="POST">
+
+                <label>Certificate Name</label>
+
+                <input type="text"
+                       name="certificate_name"
+                       placeholder="Example: Microsoft Excel Certification"
+                       required>
+
+
+                <label>Organization</label>
+
+                <input type="text"
+                       name="organization"
+                       placeholder="Example: Microsoft">
+
+
+                <label>Issue Date</label>
+
+                <input type="date"
+                       name="issue_date">
+
+
+                <label>Credential ID</label>
+
+                <input type="text"
+                       name="credential_id"
+                       placeholder="Enter credential ID">
+
+
+                <label>Certificate Link</label>
+
+                <input type="url"
+                       name="certificate_link"
+                       placeholder="https://example.com">
+
+
+                <button type="submit" class="dashboard-btn">
+                    Add Certification
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- Saved Certifications -->
+
+        <div class="profile-form-box">
+
+            <h2>My Certifications</h2>
+
+            {% if student_certifications %}
+
+            <table class="skills-table">
+
+                <thead>
+                    <tr>
+                        <th>Certificate</th>
+                        <th>Organization</th>
+                        <th>Issue Date</th>
+                        <th>Credential ID</th>
+                        <th>Certificate Link</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for certificate in student_certifications %}
+
+                    <tr>
+
+                        <td>{{ certificate.certificate_name }}</td>
+
+                        <td>{{ certificate.organization }}</td>
+
+                        <td>{{ certificate.issue_date }}</td>
+
+                        <td>{{ certificate.credential_id or 'N/A' }}</td>
+
+                        <td>
+                            {% if certificate.certificate_link %}
+                                <a href="{{ certificate.certificate_link }}" target="_blank">
+                                    View Certificate
+                                </a>
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+                <p>No certifications added yet.</p>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

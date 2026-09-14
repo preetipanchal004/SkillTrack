@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Details - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+            <h2>SkillTrack</h2>
+            <p>Admin Panel</p>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="{{ url_for('admin_dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="dashboard-content admin-dashboard-content">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1>Student Details</h1>
+                <p>View registered student information</p>
+            </div>
+
+        </div>
+
+
+        <!-- Student Information -->
+        <div class="admin-students-box">
+
+            <h2>Basic Information</h2>
+
+            <table class="profile-table">
+
+                <tr>
+                    <th>Student Name</th>
+                    <td>{{ student.name }}</td>
+                </tr>
+
+                <tr>
+                    <th>Email</th>
+                    <td>{{ student.email }}</td>
+                </tr>
+
+                <tr>
+                    <th>Phone</th>
+                    <td>
+                        {{ student.phone if student.phone else "Not Updated" }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>College</th>
+                    <td>
+                        {{ student.college if student.college else "Not Updated" }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Course</th>
+                    <td>
+                        {{ student.course if student.course else "Not Updated" }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Semester</th>
+                    <td>
+                        {{ student.semester if student.semester else "Not Updated" }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Target Role</th>
+                    <td>
+                        {{ student.target_role if student.target_role else "Not Updated" }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Career Objective</th>
+                    <td>
+                        {{ student.career_objective if student.career_objective else "Not Updated" }}
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+        <!-- Student Skills -->
+        <div class="admin-students-box">
+
+            <h2>Skills</h2>
+
+            {% if skills %}
+
+            <div class="table-container">
+
+                <table class="admin-students-table">
+
+                    <thead>
+                        <tr>
+                            <th>Skill</th>
+                            <th>Category</th>
+                            <th>Skill Level</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for skill in skills %}
+
+                        <tr>
+                            <td>{{ skill.skill_name }}</td>
+                            <td>{{ skill.category }}</td>
+                            <td>{{ skill.skill_level }} / 100</td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            {% else %}
+
+            <p class="empty-message">
+                No skills added yet.
+            </p>
+
+            {% endif %}
+
+        </div>
+        <!-- Student Projects -->
+<div class="admin-students-box">
+
+    <h2>Projects</h2>
+
+    {% if projects %}
+
+    <div class="table-container">
+
+        <table class="admin-students-table">
+
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Description</th>
+                    <th>Technologies</th>
+                    <th>Completion Date</th>
+                    <th>GitHub</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for project in projects %}
+
+                <tr>
+                    <td>{{ project.project_name }}</td>
+
+                    <td>
+                        {{ project.description if project.description else "Not Updated" }}
+                    </td>
+
+                    <td>
+                        {{ project.technologies if project.technologies else "Not Updated" }}
+                    </td>
+
+                    <td>
+                        {{ project.completion_date if project.completion_date else "Not Updated" }}
+                    </td>
+
+                    <td>
+                        {% if project.github_link %}
+                        <a href="{{ project.github_link }}" target="_blank">
+                            View
+                        </a>
+                        {% else %}
+                        Not Added
+                        {% endif %}
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <p class="empty-message">
+        No projects added yet.
+    </p>
+
+    {% endif %}
+
+</div>
+<!-- Student Certifications -->
+<div class="admin-students-box">
+
+    <h2>Certifications</h2>
+
+    {% if certifications %}
+
+    <div class="table-container">
+
+        <table class="admin-students-table">
+
+            <thead>
+                <tr>
+                    <th>Certificate</th>
+                    <th>Organization</th>
+                    <th>Issue Date</th>
+                    <th>Credential ID</th>
+                    <th>Certificate</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for certificate in certifications %}
+
+                <tr>
+                    <td>{{ certificate.certificate_name }}</td>
+
+                    <td>{{ certificate.organization }}</td>
+
+                    <td>
+                        {{ certificate.issue_date if certificate.issue_date else "Not Updated" }}
+                    </td>
+
+                    <td>
+                        {{ certificate.credential_id if certificate.credential_id else "Not Added" }}
+                    </td>
+
+                    <td>
+                        {% if certificate.certificate_link %}
+                        <a href="{{ certificate.certificate_link }}" target="_blank">
+                            View
+                        </a>
+                        {% else %}
+                        Not Added
+                        {% endif %}
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <p class="empty-message">
+        No certifications added yet.
+    </p>
+
+    {% endif %}
+
+</div>
+<!-- Student Aptitude Tests -->
+<div class="admin-students-box">
+
+    <h2>Aptitude Tests</h2>
+
+    {% if aptitude_tests %}
+
+    <div class="table-container">
+
+        <table class="admin-students-table">
+
+            <thead>
+                <tr>
+                    <th>Test Name</th>
+                    <th>Category</th>
+                    <th>Score</th>
+                    <th>Test Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for test in aptitude_tests %}
+
+                <tr>
+                    <td>{{ test.test_name }}</td>
+
+                    <td>{{ test.category }}</td>
+
+                    <td>{{ test.score }} / 100</td>
+
+                    <td>
+                        {{ test.test_date if test.test_date else "Not Updated" }}
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <p class="empty-message">
+        No aptitude tests added yet.
+    </p>
+
+    {% endif %}
+
+</div>
+<!-- Student Interview Performance -->
+<div class="admin-students-box">
+
+    <h2>Interview Performance</h2>
+
+    {% if interview_scores %}
+
+    <div class="table-container">
+
+        <table class="admin-students-table">
+
+            <thead>
+                <tr>
+                    <th>Communication</th>
+                    <th>Technical</th>
+                    <th>Confidence</th>
+                    <th>Problem Solving</th>
+                    <th>Interview Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for interview in interview_scores %}
+
+                <tr>
+                    <td>{{ interview.communication }} / 100</td>
+
+                    <td>{{ interview.technical }} / 100</td>
+
+                    <td>{{ interview.confidence }} / 100</td>
+
+                    <td>{{ interview.problem_solving }} / 100</td>
+
+                    <td>
+                        {{ interview.interview_date if interview.interview_date else "Not Updated" }}
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <p class="empty-message">
+        No interview records added yet.
+    </p>
+
+    {% endif %}
+
+</div>
+<!-- Placement Readiness -->
+<div class="admin-students-box">
+
+    <h2>Placement Readiness</h2>
+
+    <div class="readiness-card">
+
+        <div class="readiness-score">
+            {{ "%.1f"|format(readiness_score) }}%
+        </div>
+
+        <div class="readiness-status">
+            {{ readiness_status }}
+        </div>
+
+        <p>
+            This score represents the student's overall placement
+            preparation based on skills, projects, certifications,
+            aptitude performance and interview performance.
+        </p>
+
+    </div>
+
+</div>
+        <!-- Back Button -->
+        <div style="margin-top: 20px;">
+
+            <a href="{{ url_for('admin_dashboard') }}"
+               class="dashboard-btn">
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

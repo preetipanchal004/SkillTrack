@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="public-navbar">
+
+        <div class="public-logo">
+            Skill<span>Track</span>
+        </div>
+
+        <div class="public-nav-links">
+
+            <a href="{{ url_for('home') }}">Home</a>
+
+            <a href="{{ url_for('about') }}"
+               class="active">
+                About
+            </a>
+
+            <a href="{{ url_for('features') }}">
+                Features
+            </a>
+
+            <a href="{{ url_for('login') }}">
+                Login
+            </a>
+
+            <a href="{{ url_for('register') }}"
+               class="nav-button">
+                Get Started
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- About Hero -->
+
+    <section class="about-hero">
+
+        <div class="about-hero-content">
+
+            <span class="about-label">
+                ABOUT SKILLTRACK
+            </span>
+
+            <h1>
+                Build Skills.
+                <span>Track Progress.</span>
+                Get Placement Ready.
+            </h1>
+
+            <p>
+                SkillTrack is a student skill development and
+                placement analytics website designed to help
+                students understand their current preparation
+                level and improve their career readiness.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- About Content -->
+
+    <section class="about-content">
+
+        <div class="about-card">
+
+            <h2>What is SkillTrack?</h2>
+
+            <p>
+                SkillTrack provides a centralized platform where
+                students can manage their skills, courses,
+                certifications, projects, aptitude performance
+                and interview preparation.
+            </p>
+
+            <p>
+                The system analyzes student progress and provides
+                placement readiness, skill gap analysis and
+                personalized recommendations.
+            </p>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <h2>Our Objective</h2>
+
+            <p>
+                The main objective of SkillTrack is to help students
+                identify their strengths and weaknesses before
+                entering the placement process.
+            </p>
+
+            <p>
+                By combining student data with analytics, the system
+                helps students make better decisions about the skills
+                they need to improve.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Key Benefits -->
+
+    <section class="about-benefits">
+
+        <div class="section-heading">
+
+            <span>WHY SKILLTRACK?</span>
+
+            <h2>
+                Everything You Need for Placement Preparation
+            </h2>
+
+        </div>
+
+
+        <div class="benefit-grid">
+
+            <div class="benefit-card">
+
+                <div class="benefit-icon">📊</div>
+
+                <h3>Track Your Skills</h3>
+
+                <p>
+                    Monitor your technical and soft skill levels
+                    and understand your current capabilities.
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card">
+
+                <div class="benefit-icon">🎯</div>
+
+                <h3>Identify Skill Gaps</h3>
+
+                <p>
+                    Compare your current skills with the
+                    requirements of your target career role.
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card">
+
+                <div class="benefit-icon">📈</div>
+
+                <h3>Analyze Progress</h3>
+
+                <p>
+                    Track aptitude, interview and overall
+                    placement preparation performance.
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card">
+
+                <div class="benefit-icon">💡</div>
+
+                <h3>Get Recommendations</h3>
+
+                <p>
+                    Receive useful recommendations to improve
+                    your placement readiness.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer class="public-footer">
+
+        <h3>Skill<span>Track</span></h3>
+
+        <p>
+            Student Skill Development & Placement Analytics
+        </p>
+
+        <p class="footer-copy">
+            © 2026 SkillTrack. All rights reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

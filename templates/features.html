@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Features - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="public-navbar">
+
+        <div class="public-logo">
+            Skill<span>Track</span>
+        </div>
+
+        <div class="public-nav-links">
+
+            <a href="{{ url_for('home') }}">Home</a>
+
+            <a href="{{ url_for('about') }}">
+                About
+            </a>
+
+            <a href="{{ url_for('features') }}"
+               class="active">
+                Features
+            </a>
+
+            <a href="{{ url_for('login') }}">
+                Login
+            </a>
+
+            <a href="{{ url_for('register') }}"
+               class="nav-button">
+                Get Started
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Features Hero -->
+
+    <section class="features-hero">
+
+        <div class="features-hero-content">
+
+            <span class="features-label">
+                SKILLTRACK FEATURES
+            </span>
+
+            <h1>
+                Everything You Need to Become
+                <span>Placement Ready</span>
+            </h1>
+
+            <p>
+                Track your skills, analyze your preparation,
+                identify skill gaps and improve your career
+                readiness through one centralized platform.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main Features -->
+
+    <section class="features-section">
+
+        <div class="section-heading">
+
+            <span>CORE FEATURES</span>
+
+            <h2>
+                Smart Tools for Student Career Preparation
+            </h2>
+
+        </div>
+
+
+        <div class="features-grid">
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">🎯</div>
+
+                <h3>Placement Readiness</h3>
+
+                <p>
+                    Get an overall placement readiness score
+                    based on skills, projects, certifications,
+                    aptitude and interview performance.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">💻</div>
+
+                <h3>Skill Tracking</h3>
+
+                <p>
+                    Add your technical and soft skills and
+                    monitor your skill levels as you continue
+                    learning and improving.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">📊</div>
+
+                <h3>Skill Gap Analysis</h3>
+
+                <p>
+                    Compare your current skills with the
+                    requirements of your selected target role
+                    and identify areas that need improvement.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">📚</div>
+
+                <h3>Course Tracking</h3>
+
+                <p>
+                    Maintain your learning journey by tracking
+                    courses, platforms, completion status and
+                    important learning activities.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">🏆</div>
+
+                <h3>Certification Management</h3>
+
+                <p>
+                    Store your certifications, issuing
+                    organizations, issue dates and credential
+                    information in one place.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">🚀</div>
+
+                <h3>Project Portfolio</h3>
+
+                <p>
+                    Maintain your academic and personal projects
+                    along with technologies and GitHub links to
+                    strengthen your placement profile.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">📝</div>
+
+                <h3>Aptitude Performance</h3>
+
+                <p>
+                    Record aptitude test scores and track your
+                    quantitative, logical and technical
+                    preparation.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">🎤</div>
+
+                <h3>Interview Preparation</h3>
+
+                <p>
+                    Track communication, technical skills,
+                    confidence and problem-solving performance
+                    during interview preparation.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">💡</div>
+
+                <h3>Personalized Recommendations</h3>
+
+                <p>
+                    Receive improvement suggestions based on
+                    your current preparation level and identified
+                    skill gaps.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">📈</div>
+
+                <h3>Progress Analytics</h3>
+
+                <p>
+                    View your preparation progress through
+                    meaningful statistics and performance
+                    insights.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">🔐</div>
+
+                <h3>Secure User Access</h3>
+
+                <p>
+                    Student and administrator accounts are
+                    protected through authentication and
+                    role-based access.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">👨‍💼</div>
+
+                <h3>Admin Dashboard</h3>
+
+                <p>
+                    Placement administrators can view registered
+                    students and analyze their preparation and
+                    placement readiness.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Call to Action -->
+
+    <section class="features-cta">
+
+        <h2>
+            Start Building Your Career Profile Today
+        </h2>
+
+        <p>
+            Track your preparation and take a step closer
+            to your placement goals.
+        </p>
+
+        <a href="{{ url_for('register') }}"
+           class="cta-button">
+            Get Started
+        </a>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer class="public-footer">
+
+        <h3>
+            Skill<span>Track</span>
+        </h3>
+
+        <p>
+            Student Skill Development & Placement Analytics
+        </p>
+
+        <p class="footer-copy">
+            © 2026 SkillTrack. All rights reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recommendations - SkillTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        Skill<span>Track</span>
+    </div>
+
+    <p class="menu-title">MAIN MENU</p>
+
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('profile') }}">My Profile</a>
+    <a href="{{ url_for('skills') }}">My Skills</a>
+    <a href="{{ url_for('courses') }}">Courses</a>
+    <a href="{{ url_for('certifications') }}">Certifications</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+    <a href="{{ url_for('tests') }}">Aptitude Tests</a>
+    <a href="{{ url_for('interview') }}">Interview</a>
+
+    <p class="menu-title">ANALYTICS</p>
+
+    <a href="{{ url_for('readiness') }}">Placement Readiness</a>
+    <a href="{{ url_for('skill_gap') }}">Skill Gap</a>
+    <a href="{{ url_for('recommendations') }}">Recommendations</a>
+    <a href="{{ url_for('progress') }}">My Progress</a>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+</aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-content">
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <h1>Smart Recommendations</h1>
+
+                <p class="student-welcome">
+                    Personalized suggestions based on your
+                    current skills and placement preparation.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RECOMMENDATION CARDS -->
+
+        <div class="dashboard-section">
+
+            <h2>Improve Your Skills</h2>
+
+            <div class="recommendation-grid">
+
+                {% if recommendations %}
+
+                    {% for recommendation in recommendations %}
+
+                    <div class="recommendation-card">
+
+                        <div class="recommendation-icon">
+                            !
+                        </div>
+
+                        <div class="recommendation-content">
+
+                            <h3>
+                                {{ recommendation.skill_name }}
+                            </h3>
+
+                            <p>
+                                {{ recommendation.message }}
+                            </p>
+
+                            <div class="recommendation-gap">
+                                Skill Gap:
+                                <strong>
+                                    {{ recommendation.gap }}%
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <div class="section-box">
+
+                        <h3>Great Work! 🎉</h3>
+
+                        <p>
+                            You currently have no major skill gaps.
+                            Keep improving your existing skills and
+                            continue your placement preparation.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <!-- GENERAL TIPS -->
+
+        <div class="dashboard-section">
+
+            <h2>Placement Preparation Tips</h2>
+
+            <div class="recommendation-tips">
+
+                <div class="tip-card">
+                    <h3>Practice Regularly</h3>
+                    <p>
+                        Practice technical and aptitude questions
+                        regularly to improve your performance.
+                    </p>
+                </div>
+
+                <div class="tip-card">
+                    <h3>Build Projects</h3>
+                    <p>
+                        Create practical projects to strengthen your
+                        technical skills and portfolio.
+                    </p>
+                </div>
+
+                <div class="tip-card">
+                    <h3>Improve Communication</h3>
+                    <p>
+                        Practice interview questions and improve your
+                        communication and confidence.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+</body>
+</html>
