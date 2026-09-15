@@ -138,6 +138,7 @@ SkillTrack/
 │       └── style.css
 │
 └── README.md
+
 ## 📸 Project Screenshots
 
 ### Home Page
