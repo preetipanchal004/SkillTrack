@@ -138,3 +138,61 @@ SkillTrack/
 │       └── style.css
 │
 └── README.md
+## 📸 Project Screenshots
+
+### Home Page
+![Home Page](screenshots/01_Home_Page.png)
+
+### About Page
+![About Page](screenshots/02_About_Page.png)
+
+### Features Page
+![Features Page](screenshots/03_Features_Page.png)
+
+### Login Page
+![Login Page](screenshots/04_Login_Page.png)
+
+### Register Page
+![Register Page](screenshots/05_Register_Page.png)
+
+### Student Dashboard
+![Student Dashboard](screenshots/06_Student_Dashboard.png)
+
+### My Profile
+![My Profile](screenshots/07_My_Profile.png)
+
+### My Skills
+![My Skills](screenshots/08_My_Skills.png)
+
+### Courses
+![Courses](screenshots/09_Courses.png)
+
+### Certifications
+![Certifications](screenshots/10_Certifications.png)
+
+### Projects
+![Projects](screenshots/11_Projects.png)
+
+### Aptitude Tests
+![Aptitude Tests](screenshots/12_Aptitude_Tests.png)
+
+### Interview
+![Interview](screenshots/13_Interview.png)
+
+### Placement Readiness
+![Placement Readiness](screenshots/14_Placement_Readiness.png)
+
+### Skill Gap
+![Skill Gap](screenshots/15_Skill_Gap.png)
+
+### Recommendations
+![Recommendations](screenshots/16_Recommendations.png)
+
+### My Progress
+![My Progress](screenshots/17_My_Progress.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/18_Admin_Dashboard.png)
+
+### Admin Student Details
+![Admin Student Details](screenshots/19_Admin_Student_Details.png)
