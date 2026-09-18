@@ -4,7 +4,7 @@ def get_db_connection():
     connection = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="PRIT@123",
+        password="YOUR_MYSQL_PASSWORD",
         database="skilltrack_db"
     )
 
